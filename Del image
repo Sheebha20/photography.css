@@ -1,0 +1,22 @@
+$(function() {
+		$('img').click(function() {
+		   	var id = $(this).attr('id');
+		   	var thisparam = $(this);
+			   	
+			$.ajax({
+				type: 'post',
+				url: 'delete.php',
+				data: 'id=' + id,
+				
+				success: function() {
+		
+					$(thisparam).parent('li').fadeOut('slow');
+                    $('#result').remove();
+					var response = '<div id="result"><h4>Success. The image has now been removed! </h4>';
+					response += '<a href="index.php">Return to Home Page</a></div>';
+					
+					$('body').append(response);
+				}
+			});
+		});
+	})
