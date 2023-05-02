@@ -1,0 +1,28 @@
+$('#description').click(function() {
+            var originalelement = this;
+            var currentText = $(this).text();
+			$(this).fadeOut(100).before('<textarea id="input" cols="40" rows="12">' + currentText + '</textarea>');
+		
+		    $('#input').livequery('change', function() {
+	            var id = <?php echo $_GET['id'] ?>;
+			    var thisparam = this;
+                var newText = $(this).val();
+                
+                if (newText == '') {
+                   newText = 'Please enter a description'; 
+                }
+                          
+	            $.ajax({
+	                type: 'post',
+	                url: 'updatePhoto.php',
+	                data: 'id=' + id + '&description=' + newText,
+	    
+	                success: function() {
+                        $(thisparam).remove();
+	                    $(originalelement).text(newText).fadeIn(1000);
+	                }
+	           });
+                
+		    });
+		});
+	});
