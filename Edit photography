@@ -1,0 +1,5 @@
+if(strlen($_POST['description']) < 4) 
+    $error['description'] = '<p class="alert">Please enter a description for your photo. </p>';
+    
+    if($filename == '' || !preg_match('/[.](jpg)|(gif)|(png)|(jpeg)$/', $filename)) 
+    $error['no_file'] = '<p class="alert">Please select an image, dummy! </p>';
